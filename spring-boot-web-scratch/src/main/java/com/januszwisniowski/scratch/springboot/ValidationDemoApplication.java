@@ -1,4 +1,4 @@
-package com.januszwisniowski.stackoverflow.validationdemo;
+package com.januszwisniowski.scratch.springboot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

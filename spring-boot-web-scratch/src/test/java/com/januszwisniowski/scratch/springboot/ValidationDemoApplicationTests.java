@@ -1,4 +1,4 @@
-package com.januszwisniowski.stackoverflow.validationdemo;
+package com.januszwisniowski.scratch.springboot;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.januszwisniowski.stackoverflow.validationdemo.controller;
+package com.januszwisniowski.scratch.springboot.controller;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,8 +28,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.web.context.WebApplicationContext;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -46,13 +46,30 @@ public class ValidationTestControllerTest {
 
     @Test
     public void testBrokenValidationDate() throws Exception {
-        MvcResult mvcResult = this.mvc
+        this.mvc
             .perform(
                 post("/test/broken-validation")
                     .content("{ \"date\": \"\", \"time\": \"\", \"age\": \"12\" }")
                     .contentType(MediaType.APPLICATION_JSON_UTF8)
                     .accept(MediaType.APPLICATION_JSON_UTF8)
             )
+            .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void testDtoFromRequestPrams() throws Exception {
+        MvcResult mvcResult = this.mvc
+            .perform(
+                get("/test/dto-from-request-params")
+                    .param("aDateTime", "2012-11-01T12:10:11.123Z")
+                    .param("aField", "a value")
+                    .accept(MediaType.APPLICATION_JSON_UTF8)
+            )
+            // .andExpect(status().isOk())
+            // .andExpect(jsonPath("$.aDateTime").value("2012-11-01T12:10:11.123Z"))
+            // .andExpect(jsonPath("$.aField").value("a value"))
             .andReturn();
     }
 }
+
+

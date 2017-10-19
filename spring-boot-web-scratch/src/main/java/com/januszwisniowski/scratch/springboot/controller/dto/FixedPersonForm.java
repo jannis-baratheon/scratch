@@ -1,14 +1,17 @@
-package com.januszwisniowski.stackoverflow.validationdemo.controller.dto;
+package com.januszwisniowski.scratch.springboot.controller.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.validation.constraints.Min;
 
-public class PersonForm {
+public class FixedPersonForm {
     @NotBlank
+    @JsonProperty
     private String date;
 
     @NotBlank
+    @JsonProperty
     private String time;
 
     @Min(0)
