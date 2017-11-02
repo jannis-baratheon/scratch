@@ -1,5 +1,6 @@
 package com.januszwisniowski.scratch.springboot.configuration;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.module.afterburner.AfterburnerModule;
 import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
@@ -15,7 +16,8 @@ public class JacksonConfiguration {
 			// Jackson Afterburner module to speed up serialization/deserialization.
 			jackson2ObjectMapperBuilder.modulesToInstall(new AfterburnerModule());
 			jackson2ObjectMapperBuilder.featuresToDisable(
-				SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+				SerializationFeature.WRITE_DATES_AS_TIMESTAMPS,
+				DeserializationFeature.ADJUST_DATES_TO_CONTEXT_TIME_ZONE);
 		};
 	}
 }
